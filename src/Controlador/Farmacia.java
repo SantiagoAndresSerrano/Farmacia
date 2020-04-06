@@ -50,7 +50,7 @@ public class Farmacia
     {
         ListaS<Usuario> usuariosDia=new ListaS();
         int cantidadRecetas=0;
-       int salida=Integer.parseInt(JOptionPane.showInputDialog("Si desea saltarse el dia presione 0 de lo contrario presione 1"));
+       int salida=Integer.parseInt(JOptionPane.showInputDialog("Si desea saltarse el primer dia presione '0' de lo contrario presione '1' "));
        
        if(salida==0)
        {
@@ -63,29 +63,23 @@ public class Farmacia
             {
                 throw new Exception("Solo se pueden despachar 100 recetas por dia");  
             }
-        
-        
-        
+ 
         String cedula=JOptionPane.showInputDialog("Ingrese su cedula");
         String nombre=JOptionPane.showInputDialog("Ingrese su Nombre");
         
-        if(this.buscarCedula(usuariosDia, cedula)){
+        if(this.buscarCedula(usuariosDia, cedula))
             throw new Exception("Solo puede hacer un despacho por dia");
-        }
         
-        Usuario u=new Usuario(nombre,cedula);         
+        Usuario u=new Usuario(nombre,cedula);
+                 
         int cantidadMedicamentos=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la cantidad de medicamentos"));
         
-        if(cantidadMedicamentos<=0 || cantidadMedicamentos>3)
-        {
-        throw new Exception("No se puede ingresar esa cantidad de medicamentos");
-        }
+        if(cantidadMedicamentos<=0 || cantidadMedicamentos>3)        
+            throw new Exception("No se puede ingresar esa cantidad de medicamentos");
+        
         
         Receta receta=new Receta(cantidadMedicamentos);
-        
-        
-        cantidadRecetas++;
-        
+        cantidadRecetas++;        
         int i=0;
         while(i<cantidadMedicamentos)
         {
@@ -100,7 +94,7 @@ public class Farmacia
         recetas.insertarAlInicio(receta);
         usuariosDia.insertarAlInicio(u);
         usuario.insertarAlInicio(u);
-        salida=Integer.parseInt(JOptionPane.showInputDialog("Escriba 0 para ingresar al dia siguiente y 1 para continuar\nDia:"+(dias+1)));
+        salida=Integer.parseInt(JOptionPane.showInputDialog("Escriba '0' para ingresar al dia siguiente ó '1' para continuar al dia "+(dias+2)+"\nDia:"+(dias+1)));
         }
         
         dias++;
